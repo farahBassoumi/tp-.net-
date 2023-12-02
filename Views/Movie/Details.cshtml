@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+
+    @model tp.Models.Movies
+
+    <h2>Movie Details</h2>
+
+    <table>
+        <tr>
+            <td><strong>Id:</strong></td>
+            <td>@Model.Id</td>
+        </tr>
+        <tr>
+            <td><strong>Name:</strong></td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td><strong>Genre Name:</strong></td>
+            <td>@Model.GenreName</td>
+        </tr>
+        <tr>
+            <td><strong>Genre Id:</strong></td>
+            <td>@Model.Genre_Id</td>
+        </tr>
+    </table>
+
+    <h3>Customers:</h3>
+
+    @if (Model.Customers.Any())
+    {
+        <ul>
+            @foreach (var customer in Model.Customers)
+            {
+                <li>@customer.Name</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No customers associated with this movie.</p>
+    }
+
+    <a asp-action="Index">Back to Movies</a>
+
+}

@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "AddGenre";
+}
+
+
+<h1>AddGenre</h1>
+
+@model tp.Models.Genres
+
+
+<form asp-action="AddGenre" asp-controller="Movie" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Genre</button>
+</form>
+
+
+@section Scripts{
+
+    @{
+        await Html.RenderPartialAsync("_validationScriptsPartial");
+    }
+
+}
+
+

@@ -1,0 +1,75 @@
+﻿@model List<tp.Models.Customers>
+
+
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        white-space: nowrap; /* Prevent text from wrapping to the next line */
+        overflow: hidden;
+        text-overflow: ellipsis; /* Display an ellipsis (...) to indicate text overflow */
+    }
+
+    .actions {
+        width: 100px; /* Adjust the width of the Edit and Delete columns */
+    }
+
+    button {
+        background-color: #4caf50; /* Green background color */
+        color: white; /* White text color */
+        padding: 8px 16px; /* Padding for better appearance */
+        border: none; /* Remove border */
+        border-radius: 4px; /* Optional: Rounded corners */
+        cursor: pointer; /* Add cursor pointer on hover */
+    }
+
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+</style>
+<h2>All Customers</h2>
+
+@Html.ActionLink("Create Customer", "Create", "Customer")
+<br />
+<br />
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>discount Rate</th>
+            <th>Membership Name </th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.Id</td>
+                <td>@customer.Name</td>
+                <td>@customer.MembershipType?.DiscountRate</td>
+                <td>@customer.MembershipType?.Name</td>
+
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

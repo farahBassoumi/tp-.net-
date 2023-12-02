@@ -1,0 +1,44 @@
+﻿@model tp.Models.Customers
+
+<h2>Create Customer</h2>
+
+@using (Html.BeginForm("Create", "Customer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MembershipType"></label>
+        @Html.DropDownList("Membership", (IEnumerable<SelectListItem>)ViewBag.member, "Select Membership", new { @class = "form-control" })
+        <span asp-validation-for="MembershipType" class="text-danger"></span>
+    </div>
+
+
+
+    @if (ViewBag.Errors != null)
+    {
+        <div class="text-red ml">
+            <ul>
+                @foreach (string error in ViewBag.Errors)
+                {
+                    <li class="ml">@error</li>
+                }
+            </ul>
+        </div>
+    }
+
+
+    <button type="submit" class="btn btn-primary">Create</button>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

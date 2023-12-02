@@ -1,0 +1,95 @@
+﻿
+@model List<tp.Models.Movies>
+
+<h2>MOVIES </h2>
+<!--
+@foreach (var item in Model)
+{
+    <p> id: @item.Id     |    name: @item.Name     |   genre name: @item.GenreName </p>
+    @Html.ActionLink(@item.Name, "Details", new { id = @item.Id});
+    @Html.ActionLink(@item.Name, "Edit", new { id = @item.Id})
+    ;
+}-->
+
+
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        white-space: nowrap; /* Prevent text from wrapping to the next line */
+        overflow: hidden;
+        text-overflow: ellipsis; /* Display an ellipsis (...) to indicate text overflow */
+    }
+
+    .actions {
+        width: 100px; /* Adjust the width of the Edit and Delete columns */
+    }
+
+    button {
+        background-color: #4caf50; /* Green background color */
+        color: white; /* White text color */
+        padding: 8px 16px; /* Padding for better appearance */
+        border: none; /* Remove border */
+        border-radius: 4px; /* Optional: Rounded corners */
+        cursor: pointer; /* Add cursor pointer on hover */
+    }
+
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>GenreName</th>
+            <th>GenreId</th>
+            <th class="actions">Edit</th>
+            <th class="actions">Details</th>
+            <th class="actions">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Id</td>
+                <td>@movie.Name</td>
+                <td>@movie.GenreName</td>
+                <td>@movie.Genre_Id</td>
+                <td class="actions">
+                    @Html.ActionLink("Edit", "EditMovie", new { id = movie.Id })
+                </td>
+                <td class="actions">
+                    @Html.ActionLink("Details", "Details", new { id = movie.Id })
+                </td>
+                <td class="actions">
+                    <form method="post" action="@Url.Action("DeleteMovie", new { id = movie.Id })" 
+                        onsubmit="return confirm('Are you sure you want to delete this movie?');">
+                        <button type="submit">Delete Movie</button>
+                    </form>
+                </td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
